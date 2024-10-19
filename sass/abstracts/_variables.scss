@@ -1,0 +1,14 @@
+:root {
+    --background-body-color: #f0f1f1;
+    --background-tag-color: #707680;
+    --background-tag-selected: #edeae9;
+
+    --border-color: black;
+
+    --text-color: #000000;
+    // #707d7d
+}
+
+body {
+    background-color: var(--background-body-color);
+}

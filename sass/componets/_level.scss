@@ -1,0 +1,26 @@
+.game__level-container {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 2px;
+    width: 210px;
+    display: flex;
+
+    justify-content: space-between;
+    background-color: var(--background-tag-color);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn__level {
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 0 2px;
+    text-align: center;
+
+}
+
+.btn__level:hover {
+    transform: scale(1.05);
+    &.tag-selected {
+        transform: scale(1); 
+    }
+}

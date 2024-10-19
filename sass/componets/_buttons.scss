@@ -1,0 +1,17 @@
+.game__buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding: 20px 0;
+}
+
+.btn {
+    height: 30px;
+    cursor: pointer;
+    font-family: Rowdies;
+    font-weight: 700;
+    font-size: 20px;
+}
+
