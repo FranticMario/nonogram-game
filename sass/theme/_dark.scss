@@ -1,0 +1,30 @@
+body.dark {
+    --background-body-color: #333333;
+    --background-tag-color: #a8a3a3;
+    --background-tag-selected: #edeae9;
+
+    --border-color: black;
+
+    --text-color: #ffffff;
+
+    --cell-color: #CCFFFF;
+    --hint-color: #858585;
+    --cell-border-color: #CCCCCC;
+    --toggle-cell-color: #FFF;
+
+    --btn-hover: #858585;
+
+    .btn {
+        border-color: #FFF;
+        background-color: var(--background-body-color);
+        &:hover {
+            background-color: var(--btn-hover)
+        }
+    }
+
+
+    .tag-selected {
+        background-color: var(--background-body-color);
+        color: var(--text-color)
+    }
+}

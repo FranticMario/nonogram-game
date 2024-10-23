@@ -8,12 +8,12 @@ body {
     font-family: Rowdies;
     font-weight: 400;
     font-size: 20px;
-    
+    color: var(--text-color);
     height: 100vh;
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    // justify-content: space-between;
-    // position: relative;
+    display: flex;
+    align-items: center;
+    // flex-direction: row-reverse;
+
 }
 
 .tag-selected {
