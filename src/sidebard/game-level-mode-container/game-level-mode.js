@@ -52,9 +52,9 @@ export default class GameLevelMode extends View {
             if(subs instanceof GameBoardView) {
                 subs.updateNonogram(selectedGame);
                 subs.setClassLevelGame(className);
-            } 
-            else if (subs instanceof GameBoardManagmentView) {
+            } else if (subs instanceof GameBoardManagmentView) {
                 subs.setBtnfalse()
+                subs.resetTimer()
             }
 
         } )

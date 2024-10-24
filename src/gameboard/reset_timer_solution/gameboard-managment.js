@@ -5,6 +5,7 @@ export default class GameBoardManagmentView extends View {
         super();
         this.min = 0;
         this.sec = 0;
+        this.actions = []
         this.gameboard = gameboard;
         this.wrapper = this.createElement("div", "", ["game__info"])
         this.btnSolution = this.createElement("button", "Solution", "btn");
@@ -12,7 +13,7 @@ export default class GameBoardManagmentView extends View {
         this.intervalId = null;
         this.timerAktiveOrNot = false;
         this.appendResetBtn();
-        this.appendTimerBtn();
+        this.appendTimerBtn(this.time);
         this.appendSolutionBtn();
     }
 
@@ -49,7 +50,6 @@ export default class GameBoardManagmentView extends View {
             this.intervalId = setInterval(() => {
 
                 this.updateTimer();
-
             }, 1000);
         }
     }
@@ -68,6 +68,7 @@ export default class GameBoardManagmentView extends View {
             this.timer.textContent = `${formattedMin} : ${formattedSec}`;
         }
 
+        this.notifyAll(this.timer.textContent)
     }
 
     resetTimer() {
@@ -115,7 +116,23 @@ export default class GameBoardManagmentView extends View {
         this.btnSolution.disabled = false
     }
 
+    notifyAll(timer) {
+        return this.actions.forEach(subs => {
+            subs.setActuelTimer(timer)
+        } )
+    }
 
+    register(observer) {
+        this.actions.push(observer)
+    }
+
+
+    setLastGameTimer(lastGameTimer) {
+        const arrLastGameTimer = lastGameTimer.split(":")
+        this.timer.textContent = lastGameTimer
+        this.min = +arrLastGameTimer[0]
+        this.sec = +arrLastGameTimer[1]
+    }
 
     getElement() {
         return this.wrapper

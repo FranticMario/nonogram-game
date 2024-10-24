@@ -1,5 +1,6 @@
 import View from "../utils/view.js";
 import puzzles from "../data/puzzles.js";
+import GameButtonsView from "../sidebard/game-buttons-container/game-buttons-container.js";
 
 export default class GameBoardView extends View {
     constructor(elternElement) {
@@ -104,14 +105,14 @@ export default class GameBoardView extends View {
         nonogramGrid.addEventListener("contextmenu", e => e.preventDefault())
         for(let i = 0; i < game.size * game.size; i++) {
             const cell = this.createElement("div", "", ["cell"]);
-            cell.addEventListener("mousedown", (e) => this.toggleColorCell(e, nonogramGrid, game.matrix))
+            cell.addEventListener("mousedown", (e) => this.toggleColorCell(e, nonogramGrid, game.matrix, game))
             nonogramGrid.append(cell);
         }
         this.wrapper.append(nonogramGrid);
         this.relevantNonogram = nonogramGrid
     }
 
-    toggleColorCell(event, nonogramContainer, gameMatrix) {
+    toggleColorCell(event, nonogramContainer, gameMatrix, game) {
         const currentTarget = event.target
 
         if(event.button === 0) {
@@ -122,7 +123,7 @@ export default class GameBoardView extends View {
                 currentTarget.classList.toggle("cross")
         }
        this.checkToWin(nonogramContainer, gameMatrix);
-        this.notifyAll()
+        this.notifyAll(nonogramContainer, game)
     //    this.audioLeftClick.play()
     }
 
@@ -142,11 +143,15 @@ export default class GameBoardView extends View {
         return this.relevantMatrixGame;
     }
 
-    notifyAll() {
+    notifyAll(actulyGameboard, game) {
        return this.actions.forEach(subs => {
+            if(subs instanceof GameButtonsView) {
+                subs.btnDisabled = false;
+                subs.createSaveButton(actulyGameboard, game)
+            } else {
+                subs.startTimer();
+            }
 
-            subs.startTimer();
-       
         } )
     }
 

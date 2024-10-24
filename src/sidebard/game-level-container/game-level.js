@@ -3,9 +3,9 @@ import View from "../../utils/view.js";
 import Observable from "../../utils/observable.js";
 
 const levels = {
-    easy: "Easy",
-    medium: "Medium",
-    hard: "Hard"
+    easy: "easy",
+    medium: "medium",
+    hard: "hard"
 }
 
 export default class GameLevelView extends View {
@@ -16,12 +16,12 @@ export default class GameLevelView extends View {
 
         this.actions = [];
 
-        this.createBtnLevel("Easy");
+        this.createBtnLevel("easy");
     }
 
 
     createBtnLevel(selectedTag) {
-        this.wrapper.innetHTML = "";
+        this.wrapper.innerHTML = "";
 
         for(let level in levels ) {
             const levelElement = this.createElement("span", `${levels[level]}`, `${levels[level] === selectedTag ? "btn__level tag-selected" : "btn__level"}`);
@@ -51,8 +51,8 @@ export default class GameLevelView extends View {
         return this.wrapper;
     }
 
-    notifyAll(selectedTag) {
-        return this.actions.forEach(subs => subs.updateMode(selectedTag))
+    notifyAll(selectedTag, name = "Maske") {
+        return this.actions.forEach(subs => subs.updateMode(selectedTag, name))
     }
 
     register(observer) {

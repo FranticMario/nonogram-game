@@ -13,16 +13,23 @@ export default class AppView extends View {
 
         this.gameLevelContainer = new GameLevelView();
         this.gameLevelMode = new GameLevelMode();
-        this.gameButtonsContainer = new GameButtonsView();
-
         this.nonogramBoard = new GameBoardView(this.gameBoardContainer);
         this.nonogramGameManagmentContainer = new GameBoardManagmentView(this.nonogramBoard);
+        this.gameButtonsContainer = new GameButtonsView(this.gameLevelContainer, this.gameLevelMode, this.nonogramGameManagmentContainer);
+
+ 
 
         this.gameLevelContainer.register(this.gameLevelMode);
         this.gameLevelMode.register(this.nonogramBoard);
-        this.nonogramBoard.register(this.nonogramGameManagmentContainer);
+        this.gameLevelMode.register(this.nonogramGameManagmentContainer);
 
+        this.nonogramBoard.register(this.nonogramGameManagmentContainer);
+        this.nonogramBoard.register(this.gameButtonsContainer)
         this.gameLevelMode.register(this.nonogramGameManagmentContainer)
+
+        this.nonogramGameManagmentContainer.register(this.gameButtonsContainer)
+
+
 
         this.sidebarContainer.append(this.gameLevelContainer.getElement(), this.gameLevelMode.getElement(), this.gameButtonsContainer.getElement())
         this.gameBoardContainer.append(this.nonogramBoard.getElement(), this.nonogramGameManagmentContainer.getElement())
