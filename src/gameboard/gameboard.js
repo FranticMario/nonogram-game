@@ -122,7 +122,7 @@ export default class GameBoardView extends View {
                 currentTarget.classList.toggle("cross")
         }
        this.checkToWin(nonogramContainer, gameMatrix);
-       this.notifyAll()
+        this.notifyAll()
     //    this.audioLeftClick.play()
     }
 
@@ -143,9 +143,10 @@ export default class GameBoardView extends View {
     }
 
     notifyAll() {
-        return this.actions.forEach(subs => {
-            subs.updateTimer();
+       return this.actions.forEach(subs => {
 
+            subs.startTimer();
+       
         } )
     }
 

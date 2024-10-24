@@ -1,6 +1,7 @@
 import puzzles from "../../data/puzzles.js"
+import GameBoardView from "../../gameboard/gameboard.js";
 import View from "../../utils/view.js"
-
+import GameBoardManagmentView from "../../gameboard/reset_timer_solution/gameboard-managment.js";
 
 export default class GameLevelMode extends View {
     constructor() {
@@ -45,10 +46,17 @@ export default class GameLevelMode extends View {
     }
 
     notifyAll(selectedGame, className) {
-    
+
         return this.actions.forEach(subs => {
-            subs.updateNonogram(selectedGame);
-            subs.setClassLevelGame(className);
+         
+            if(subs instanceof GameBoardView) {
+                subs.updateNonogram(selectedGame);
+                subs.setClassLevelGame(className);
+            } 
+            else if (subs instanceof GameBoardManagmentView) {
+                subs.setBtnfalse()
+            }
+
         } )
     }
 
