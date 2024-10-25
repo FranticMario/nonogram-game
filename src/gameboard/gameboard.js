@@ -3,6 +3,7 @@ import puzzles from "../data/puzzles.js";
 import GameButtonsView from "../sidebard/game-buttons-container/game-buttons-container.js";
 import Modal from "../modal/modal.js";
 
+
 export default class GameBoardView extends View {
     constructor(elternElement) {
         super();
@@ -10,8 +11,8 @@ export default class GameBoardView extends View {
         this.relevantNonogram = [];
         this.relevantMatrixGame = [];
         this.actions = [];
-        this.audioLeftClick = new Audio("assets/audio/left-click_1.mp3")
-        this.audioRightClick = new Audio("assets/audio/right-click.mp3")
+        this.audioLeftClick = new Audio("./assets/audio/left-click_1.mp3")
+        this.audioRightClick = new Audio("./assets/audio/right-click.mp3")
         this.updateNonogram("Maske")
     }
 

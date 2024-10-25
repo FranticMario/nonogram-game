@@ -326,7 +326,7 @@ body {
 .cross {
   width: 130px;
   height: 130px;
-  background: url("assets/icons/cross-23.svg");
+  background: url("./assets/icons/cross-23.svg");
 }
 
 .hints__left {
