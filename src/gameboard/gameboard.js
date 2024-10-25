@@ -10,13 +10,13 @@ export default class GameBoardView extends View {
         this.relevantNonogram = [];
         this.relevantMatrixGame = [];
         this.actions = [];
-        this.audioLeftClick = new Audio("../../assets/audio/click.mp3")
+        this.audioLeftClick = new Audio("../../assets/audio/left-click_1.mp3")
+        this.audioRightClick = new Audio("../../assets/audio/right-click.mp3") 
         this.updateNonogram("Maske")
     }
 
 
     updateNonogram(gameName) {
-     
         this.wrapper.innerHTML = ""
         this.appendNonogramView();
         puzzles.forEach(item => {
@@ -119,14 +119,16 @@ export default class GameBoardView extends View {
         if(event.button === 0) {
             if(currentTarget.classList.contains("cross")) currentTarget.classList.remove("cross")
             currentTarget.classList.toggle("fill")
+            this.audioLeftClick.play()
         } else if (event.button === 2) {
             if(currentTarget.classList.contains("fill")) currentTarget.classList.remove("fill")
                 currentTarget.classList.toggle("cross")
+            this.audioRightClick.play()
         }
 
         this.notifyAll(nonogramContainer, game)
         this.checkToWin(nonogramContainer, gameMatrix, game);
-    //    this.audioLeftClick.play()
+
     }
 
     checkToWin(currentNonogram, currentGame, game) {

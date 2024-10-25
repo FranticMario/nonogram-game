@@ -3,6 +3,7 @@ import GameBoardManagmentView from "../gameboard/reset_timer_solution/gameboard-
 import GameButtonsView from "../sidebard/game-buttons-container/game-buttons-container.js";
 import GameLevelView from "../sidebard/game-level-container/game-level.js";
 import GameLevelMode from "../sidebard/game-level-mode-container/game-level-mode.js";
+import GameModeSoundTheme from "../sidebard/game-mode-sound-theme/game-mode-sound-theme.js";
 import View from "../utils/view.js";
 
 export default class AppView extends View {
@@ -16,7 +17,7 @@ export default class AppView extends View {
         this.nonogramBoard = new GameBoardView(this.gameBoardContainer);
         this.nonogramGameManagmentContainer = new GameBoardManagmentView(this.nonogramBoard);
         this.gameButtonsContainer = new GameButtonsView(this.gameLevelContainer, this.gameLevelMode, this.nonogramGameManagmentContainer, this.nonogramBoard);
-
+        this.gameModeSoundTheme = new GameModeSoundTheme(this.nonogramBoard);
  
 
         this.gameLevelContainer.register(this.gameLevelMode);
@@ -35,7 +36,7 @@ export default class AppView extends View {
 
 
 
-        this.sidebarContainer.append(this.gameLevelContainer.getElement(), this.gameLevelMode.getElement(), this.gameButtonsContainer.getElement())
+        this.sidebarContainer.append(this.gameLevelContainer.getElement(), this.gameLevelMode.getElement(), this.gameButtonsContainer.getElement(), this.gameModeSoundTheme.getElement())
         this.gameBoardContainer.append(this.nonogramBoard.getElement(), this.nonogramGameManagmentContainer.getElement())
     }
 
