@@ -1,0 +1,59 @@
+.game__modal {
+    position: absolute;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    padding: 0 10px;
+    pointer-events: none;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(61, 60, 66, 0.277);
+    transition: opacity 0.4s ease;
+    pointer-events: auto
+}
+
+.show {
+    opacity: 1;
+    pointer-events: auto;
+
+}
+
+.content {
+    background: #fff;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.img__lost {
+    max-width: 130px;
+    margin-bottom: 20px;
+
+}
+
+.modal__title {
+    font-size: 1.53rem;
+}
+
+.modal__subtitle {
+    font-size: 1.15rem;
+    margin: 15px 0 30px;
+    font-weight: 500;
+}
+
+.correct__word {
+    color: #5e63ba;
+    font-weight: 600;
+}
+
+.play__again {
+    padding: 12px 23px;
+
+}

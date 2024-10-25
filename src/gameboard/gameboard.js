@@ -1,6 +1,7 @@
 import View from "../utils/view.js";
 import puzzles from "../data/puzzles.js";
 import GameButtonsView from "../sidebard/game-buttons-container/game-buttons-container.js";
+import Modal from "../modal/modal.js";
 
 export default class GameBoardView extends View {
     constructor(elternElement) {
@@ -73,11 +74,11 @@ export default class GameBoardView extends View {
     appendNonogramHintLeft(game) {
         const nonogramHintLeft = this.createElement("div", "", ["nonogram__hint-left"])
 
-        for(let col = 0; col < game.size; col++) {
+        for(let row = 0; row < game.size; row++) {
             const hintLeftRow = this.createElement("div", "", ["hints__left"]);
 
             let consecutiveHints = 0;
-            for (let row = 0; row < game.size; row++) {
+            for (let col = 0; col < game.size; col++) {
                 if (game.matrix[row][col] === 1) {
                     consecutiveHints++;
                 } else if (consecutiveHints > 0) {
@@ -122,16 +123,21 @@ export default class GameBoardView extends View {
             if(currentTarget.classList.contains("fill")) currentTarget.classList.remove("fill")
                 currentTarget.classList.toggle("cross")
         }
-       this.checkToWin(nonogramContainer, gameMatrix);
+
         this.notifyAll(nonogramContainer, game)
+        this.checkToWin(nonogramContainer, gameMatrix, game);
     //    this.audioLeftClick.play()
     }
 
-    checkToWin(currentNonogram, currentGame) {
+    checkToWin(currentNonogram, currentGame, game) {
+        const gameManagmentContainer = this.actions[0]
        const newArr =  Array.from(currentNonogram.children).map(item => item.classList.contains("fill") ? 1 : 0)
         const currentGameFlat = currentGame.flat();
         if(JSON.stringify(newArr) === JSON.stringify(currentGameFlat)) {
-            console.log("Hastu du gewonen")
+            Array.from(currentNonogram.children).map(cell => cell.style.pointerEvents = "none")
+            this.actions[0].stopTimer()
+           const modal = new Modal(game.name, gameManagmentContainer.timer.textContent)
+           document.body.prepend(modal.getElement())
         }
     }
 
@@ -143,11 +149,16 @@ export default class GameBoardView extends View {
         return this.relevantMatrixGame;
     }
 
+    getNonogramCointainer() {
+        return this.relevantNonogram.children;
+    }
+
     notifyAll(actulyGameboard, game) {
        return this.actions.forEach(subs => {
             if(subs instanceof GameButtonsView) {
                 subs.btnDisabled = false;
                 subs.createSaveButton(actulyGameboard, game)
+
             } else {
                 subs.startTimer();
             }

@@ -24,6 +24,7 @@ export default class GameBoardManagmentView extends View {
             const actualGameboard = this.gameboard.getRelevantenNonogram()
             this.resetTimer()
             Array.from(actualGameboard).forEach(cell => {
+                cell.style.pointerEvents = "auto"
                 if(cell.classList.contains("fill") || cell.classList.contains("cross")) {
                     cell.classList.remove("fill")
                     cell.classList.remove("cross")
@@ -71,6 +72,14 @@ export default class GameBoardManagmentView extends View {
         this.notifyAll(this.timer.textContent)
     }
 
+    stopTimer() {
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+        }
+        this.timerAktiveOrNot = false;
+    }
+
     resetTimer() {
         this.min = 0;
         this.sec = 0;
@@ -89,31 +98,33 @@ export default class GameBoardManagmentView extends View {
     }
 
     appendSolutionBtn() {
-
-
         this.btnSolution.addEventListener("click", () => {
+            this.actions[0].saveBtn.disabled = true;
+            this.stopTimer();
+            this.btnSolution.disabled = true;
+
             const actulyGameMatrix = this.gameboard.getRelevantenMatrixGame().flat()
             const actualGameboard = Array.from(this.gameboard.getRelevantenNonogram())
 
             actualGameboard.forEach(item => {
-                item.classList.remove("fill") 
-                item.classList.remove("cross") 
+                item.classList.remove("fill")
+                item.classList.remove("cross")
+                item.style.pointerEvents = "none";
             });
 
-            this.btnSolution.disabled = true;
+
              actulyGameMatrix.forEach((item, index) => {
                 if(item === 1) {
                     actualGameboard[index].classList.add("fill")
                 }
              })
-
         })
 
         this.wrapper.append(this.btnSolution)
     }
 
     setBtnfalse() {
-        this.btnSolution.disabled = false
+        this.btnSolution.disabled = false;
     }
 
     notifyAll(timer) {
