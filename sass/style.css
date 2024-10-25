@@ -1,21 +1,21 @@
 @font-face {
   font-family: "Rowdies";
-  src: url("../../assets/fonts/Rowdies-Light.ttf");
+  src: url("../assets/fonts/Rowdies-Light.ttf");
   font-weight: 300;
 }
 @font-face {
   font-family: "Rowdies";
-  src: url("../../assets/fonts/Rowdies-Regular.ttf");
+  src: url("../assets/fonts/Rowdies-Regular.ttf");
   font-weight: 400;
 }
 @font-face {
   font-family: "Rowdies";
-  src: url("../../assets/fonts/Rowdies-Bold.ttf");
+  src: url("../assets/fonts/Rowdies-Bold.ttf");
   font-weight: 700;
 }
 @font-face {
   font-family: "AbrilFatface";
-  src: url("../../assets/fonts/AbrilFatface-Regular.ttf");
+  src: url("../assets/fonts/AbrilFatface-Regular.ttf");
   font-weight: 400;
 }
 :root {
@@ -326,7 +326,7 @@ body {
 .cross {
   width: 130px;
   height: 130px;
-  background: url("./assets/icons/cross-23.svg");
+  background: url("../assets/icons/cross-23.svg");
 }
 
 .hints__left {
