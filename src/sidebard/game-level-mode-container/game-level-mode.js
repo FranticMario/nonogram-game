@@ -3,6 +3,7 @@ import GameBoardView from "../../gameboard/gameboard.js";
 import View from "../../utils/view.js"
 import GameBoardManagmentView from "../../gameboard/reset_timer_solution/gameboard-managment.js";
 import GameButtonsView from "../game-buttons-container/game-buttons-container.js";
+import GameLevelView from "../game-level-container/game-level.js";
 
 export default class GameLevelMode extends View {
     constructor() {
@@ -36,8 +37,10 @@ export default class GameLevelMode extends View {
         
         this.gameName = eventTarget.textContent;
         currentContainer.forEach(item => item.classList.contains("tag-selected") ? item.classList.remove("tag-selected") : null)
-        eventTarget.classList.add("tag-selected");
 
+        eventTarget.classList.add("tag-selected");
+        console.log(this.gameName)
+       
         this.notifyAll(this.gameName, level)
 
     }
@@ -58,6 +61,9 @@ export default class GameLevelMode extends View {
                 subs.resetTimer()
             } else if(subs instanceof GameButtonsView) {
                 subs.saveBtn.disabled = true;
+            } else if(subs instanceof GameLevelView ) {
+                console.log(this.gameName)
+                subs.nameGame = this.gameName 
             }
 
         } )

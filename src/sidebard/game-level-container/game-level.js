@@ -15,7 +15,7 @@ export default class GameLevelView extends View {
         this.wrapper = this.createElement('div', "", ["game__level-container"]);
 
         this.actions = [];
-
+        this.nameGame = "Maske";
         this.createBtnLevel("easy");
     }
 
@@ -43,7 +43,7 @@ export default class GameLevelView extends View {
         })
 
         currentTarget.classList.add("tag-selected");
-        this.notifyAll(selectedLevel);
+        this.notifyAll(selectedLevel, this.nameGame);
     }
 
 
@@ -51,7 +51,7 @@ export default class GameLevelView extends View {
         return this.wrapper;
     }
 
-    notifyAll(selectedTag, name = "Maske") {
+    notifyAll(selectedTag, name) {
         return this.actions.forEach(subs => subs.updateMode(selectedTag, name))
     }
 

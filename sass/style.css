@@ -333,7 +333,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 130px;
   height: 130px;
   border: 1px solid var(--hint-color);
   border-right: 3px solid var(--cell-border-color);

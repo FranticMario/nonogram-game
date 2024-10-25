@@ -24,6 +24,8 @@ export default class AppView extends View {
         this.gameLevelMode.register(this.nonogramBoard);
         this.gameLevelMode.register(this.nonogramGameManagmentContainer);
         this.gameLevelMode.register(this.gameButtonsContainer)
+        this.gameLevelMode.register(this.gameLevelContainer)
+
 
         this.nonogramBoard.register(this.nonogramGameManagmentContainer);
         this.nonogramBoard.register(this.gameButtonsContainer)

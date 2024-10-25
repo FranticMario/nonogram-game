@@ -1,3 +1,4 @@
+import puzzles from "../../data/puzzles.js";
 import View from "../../utils/view.js"
 import Records from "./records/records.js";
 
@@ -15,6 +16,7 @@ export default class GameButtonsView extends View {
         this.lastGameBtn = this.createElement("button", "Continue Last Game", "btn")
         this.saveBtn.disabled = true
         this.actulyGameboard = null;
+        this.previousIndex = null;
         this.wrapper.append(this.saveBtn, this.lastGameBtn)
         this.createContinueLastGameButton();
         this.createRandomGameButton();
@@ -50,12 +52,15 @@ export default class GameButtonsView extends View {
         this.lastGameBtn.addEventListener("click", () => {
             const getLocalItem = JSON.parse(localStorage.getItem("last game"))
 
+            this.levelContainer.nameGame = getLocalItem.name
+            this.modeContainer.gameName = getLocalItem.name
+
             this.levelContainer.createBtnLevel(getLocalItem.level)
             this.levelContainer.notifyAll(getLocalItem.level, getLocalItem.name)
             this.modeContainer.notifyAll(getLocalItem.name, getLocalItem.level)
             this.nonogramManagmentContainer.setLastGameTimer(getLocalItem.timer)
             this.nonogramManagmentContainer.startTimer()
-
+            this.saveBtn.disabled = false;
             const arrGameboard = Array.from(this.nonogramGameBoard.getNonogramCointainer())
             arrGameboard.forEach((cell, index) => {
                 if(getLocalItem.matrix[index] === 1) {
@@ -71,6 +76,29 @@ export default class GameButtonsView extends View {
 
     createRandomGameButton() {
         const randomGame = this.createElement("button", "Random", "btn")
+
+        randomGame.addEventListener("click", () => {
+
+            let newIndex;
+
+
+            do {
+                newIndex = Math.floor(Math.random() * puzzles.length);
+            } while (newIndex === this.previousIndex);
+
+
+            this.previousIndex = newIndex;
+
+            this.levelContainer.nameGame = puzzles[newIndex].name
+            this.modeContainer.gameName = puzzles[newIndex].name
+
+            this.levelContainer.createBtnLevel(puzzles[newIndex].level)
+            this.levelContainer.notifyAll(puzzles[newIndex].level, puzzles[newIndex].name)
+            this.modeContainer.notifyAll(puzzles[newIndex].name, puzzles[newIndex].level)
+
+        })
+
+
 
         this.wrapper.append(randomGame)
     }
