@@ -1,30 +1,29 @@
 body.dark {
-    --background-body-color: #333333;
-    --background-tag-color: #a8a3a3;
-    --background-tag-selected: #edeae9;
+  --background-body-color: #0d1117;
+  --background-tag-color: #a8a3a3;
+  --background-tag-selected: #edeae9;
 
-    --border-color: black;
+  --border-color: black;
 
-    --text-color: #ffffff;
+  --text-color: #ffffff;
 
-    --cell-color: #CCFFFF;
-    --hint-color: #858585;
-    --cell-border-color: #CCCCCC;
-    --toggle-cell-color: #FFF;
+  --cell-color: #f0f6fc;
+  --hint-color: #858585;
+  --cell-border-color: #cccccc;
+  --toggle-cell-color: #c7c7c7;
 
-    --btn-hover: #858585;
+  --btn-hover: #858585;
 
-    .btn {
-        border-color: #FFF;
-        background-color: var(--background-body-color);
-        &:hover {
-            background-color: var(--btn-hover)
-        }
+  .btn {
+    border-color: #fff;
+    background-color: var(--background-body-color);
+    &:hover {
+      background-color: var(--btn-hover);
     }
+  }
 
-
-    .tag-selected {
-        background-color: var(--background-body-color);
-        color: var(--text-color)
-    }
+  .tag-selected {
+    background-color: var(--background-body-color);
+    color: var(--text-color);
+  }
 }

@@ -1,25 +1,25 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Rowdies;
-    font-weight: 400;
-    font-size: 20px;
-    color: var(--text-color);
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    // flex-direction: row-reverse;
-
+  font-family: Rowdies;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--text-color);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  // flex-direction: row-reverse;
+  position: relative;
+  overflow: hidden;
 }
 
 .tag-selected {
-    border-radius: 10px;
-    background-color: var(--background-tag-selected);
-    width: 100%;
-    color: var(--text-color)
+  border-radius: 10px;
+  background-color: var(--background-tag-selected);
+  width: 100%;
+  color: var(--text-color);
 }
-

@@ -28,6 +28,7 @@
   --hint-color: #858585;
   --cell-border-color: #000000;
   --toggle-cell-color: black;
+  --background-burger-color: #a2a2a2;
 }
 
 body {
@@ -53,6 +54,8 @@ body {
   height: 100vh;
   display: flex;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .tag-selected {
@@ -131,7 +134,7 @@ body {
 }
 
 .content {
-  background: #fff;
+  background: var(--background-body-color);
   max-width: 420px;
   width: 100%;
   text-align: center;
@@ -168,13 +171,36 @@ body {
   flex-direction: column;
   justify-content: center;
   gap: 30px;
-  width: 250px;
+  max-width: 250px;
   height: 100vh;
   border-right: 2px solid var(--border-color);
   padding: 20px;
   -webkit-box-shadow: 11px 2px 28px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 11px 2px 28px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 11px 2px 28px 1px rgba(0, 0, 0, 0.75);
+}
+@media (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+  .sidebar.open {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    background: var(--background-burger-color);
+    z-index: 8;
+    gap: 15px;
+  }
+}
+
+.header__burger:after, .header__burger:before {
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  position: absolute;
+  background-color: black;
+  transition: transform 0.5s, opacity 0.5s;
+  content: "";
 }
 
 .game__level-mode {
@@ -201,18 +227,54 @@ body {
   justify-content: space-around;
 }
 
+.header__burger {
+  display: none;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 10px;
+  top: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+.header__burger:before {
+  transform: translateY(-5px);
+}
+.header__burger:after {
+  transform: translateY(3px);
+}
+@media (max-width: 1000px) {
+  .header__burger {
+    display: flex;
+  }
+}
+
+.burger-active {
+  transition: transform 0.5s, opacity 0.5s;
+}
+.burger-active:before {
+  transform: rotate(-45deg);
+}
+.burger-active:after {
+  transform: rotate(45deg);
+}
+
 .gameboard {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
-  gap: 50px;
+  gap: 24px;
   margin: 0 auto;
   position: relative;
+  padding-top: 30px;
 }
 
 .nonograms {
   display: grid;
+  padding: 10px;
   grid-template-columns: repeat(2, max-content);
   grid-template-rows: repeat(2, max-content);
 }
@@ -259,18 +321,18 @@ body {
   border-right: 3px solid var(--cell-border-color);
 }
 .medium .cell {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
 }
 .medium .hints__left {
-  height: 70px;
+  height: 60px;
 }
 .medium .hints__top {
-  width: 70px;
+  width: 60px;
 }
 .medium .cross {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
 }
 
 .hard .nonogram__grid {
@@ -299,23 +361,23 @@ body {
   border-right: 3px solid var(--cell-border-color);
 }
 .hard .cell {
-  width: 45px;
-  height: 45px;
+  width: 30px;
+  height: 30px;
 }
 .hard .hints__left {
-  height: 45px;
+  height: 30px;
 }
 .hard .hints__top {
-  width: 45px;
+  width: 30px;
 }
 .hard .cross {
-  width: 45px;
-  height: 45px;
+  width: 30px;
+  height: 30px;
 }
 
 .cell {
-  width: 130px;
-  height: 130px;
+  width: 120px;
+  height: 120px;
   border: 1px solid var(--cell-color);
 }
 
@@ -324,8 +386,8 @@ body {
 }
 
 .cross {
-  width: 130px;
-  height: 130px;
+  width: 120px;
+  height: 120px;
   background: url("../assets/icons/cross-23.svg");
 }
 
@@ -333,14 +395,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 130px;
-  height: 130px;
+  width: 120px;
+  height: 120px;
   border: 1px solid var(--hint-color);
   border-right: 3px solid var(--cell-border-color);
 }
 
 .hints__top {
-  width: 130px;
+  width: 120px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -361,19 +423,19 @@ body {
 }
 
 body.dark {
-  --background-body-color: #333333;
+  --background-body-color: #0d1117;
   --background-tag-color: #a8a3a3;
   --background-tag-selected: #edeae9;
   --border-color: black;
   --text-color: #ffffff;
-  --cell-color: #CCFFFF;
+  --cell-color: #f0f6fc;
   --hint-color: #858585;
-  --cell-border-color: #CCCCCC;
-  --toggle-cell-color: #FFF;
+  --cell-border-color: #cccccc;
+  --toggle-cell-color: #c7c7c7;
   --btn-hover: #858585;
 }
 body.dark .btn {
-  border-color: #FFF;
+  border-color: #fff;
   background-color: var(--background-body-color);
 }
 body.dark .btn:hover {
