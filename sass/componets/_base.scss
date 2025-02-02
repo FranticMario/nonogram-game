@@ -9,12 +9,10 @@ body {
   font-weight: 400;
   font-size: 20px;
   color: var(--text-color);
-  height: 100vh;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  height: 100vh;
   // flex-direction: row-reverse;
-  position: relative;
-  overflow: hidden;
 }
 
 .tag-selected {

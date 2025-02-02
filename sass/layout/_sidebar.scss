@@ -2,17 +2,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  position: absolute;
   gap: 30px;
   max-width: 250px;
   height: 100vh;
+  left: 0;
   border-right: 2px solid var(--border-color);
   padding: 20px;
   -webkit-box-shadow: 11px 2px 28px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 11px 2px 28px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 11px 2px 28px 1px rgba(0, 0, 0, 0.75);
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1360px) {
     display: none;
 
     &.open {
@@ -82,7 +83,7 @@
     transform: translateY(3px);
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1360px) {
     display: flex;
   }
 }

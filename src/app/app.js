@@ -9,6 +9,11 @@ import View from '../utils/view.js'
 export default class AppView extends View {
   constructor() {
     super()
+
+    this.main = document.createElement('main')
+    this.main.classList.add('app-main')
+    document.body.append(this.main) 
+
     this.sidebarContainer = this.createSidebarContainer()
     this.gameBoardContainer = this.createGameBoardContainer()
     this.burger = this.createBurgerMenu()
@@ -49,14 +54,14 @@ export default class AppView extends View {
 
   createSidebarContainer() {
     const sidebarContainer = this.createElement('div', '', 'sidebar')
-    document.body.append(sidebarContainer)
+     this.main.append(sidebarContainer)
 
     return sidebarContainer
   }
 
   createGameBoardContainer() {
     const gameBoardContainer = this.createElement('div', '', 'gameboard')
-    document.body.append(gameBoardContainer)
+    this.main.append(gameBoardContainer)
 
     return gameBoardContainer
   }
@@ -68,7 +73,7 @@ export default class AppView extends View {
       this.sidebarContainer.classList.toggle('open')
     })
 
-    document.body.append(burger)
+    this.main.append(burger)
 
     return burger
   }
